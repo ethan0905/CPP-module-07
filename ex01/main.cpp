@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 18:16:02 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/08 18:31:47 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:17:07 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	main(int ac, char **av)
 
 		::iter(intTab, 5, print);
 		::iter(charTab, 5, print);
+
+		ClassTest	classTab[10];
+
+		::iter(classTab, 5, print);
 	}
 	else
 		std::cerr << "Error: invalid synthax. Try with ./execName" << std::endl;
