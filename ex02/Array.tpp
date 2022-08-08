@@ -6,7 +6,7 @@
 /*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/08 23:41:15 by c2h6             ###   ########.fr       */
+/*   Updated: 2022/08/08 23:51:34 by c2h6             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,17 @@ class	Array {
 				this->_array[i] = 0; 
 			return ;
 		}
-		Array<T>( T const & src ) {
+		Array<T>( T & src ) {
 			
-			*this = src;
+			if (this != src)
+			{
+				if (this->_array)
+					delete (this->_array);
+				this->_n = src._n;
+				this->_array = new T[size(src)];
+				for (unsigned int i = 0; i < src._n; i++)
+					this->_array[i] = src._array[i];
+			}
 			return ;
 		}
 		~Array<T>( void ) {
@@ -43,13 +51,23 @@ class	Array {
 			return ;
 		}
 		
-		Array	&operator=( Array<T> const & src ) {
+		unsigned int size( T const & array ) {
+			
+			int i;
+			
+			for (i = 0; array[i] != '\0'; i++)
+				;
+			return (i);
+		}
+		
+		Array	&operator=( Array<T> & src ) {
 			
 			if (this != src)
 			{
 				if (this->_array)
 					delete (this->_array);
-				this->_array = new T[src._n];
+				this->_n = src._n;
+				this->_array = new T[size(src)];
 				for (unsigned int i = 0; i < src._n; i++)
 					this->_array[i] = src._array[i];
 			}
@@ -61,7 +79,7 @@ class	Array {
 			
 			if (i >= this->_n)
 				throw Array::InvalidIndexException();
-			return(*this);
+			return(this->_array[i]);
 		}
 		
 		// std::ostream	&operator<<(std::ostream &o, Array const &src) {
