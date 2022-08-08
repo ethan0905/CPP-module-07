@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/08 00:59:17 by c2h6             ###   ########.fr       */
+/*   Updated: 2022/08/08 18:30:46 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 #include <iostream>
 
 template<typename T>
-void	iter(T const & addr, T const & size/*, T const & f()*/){
+void	print( T const &addr ) {
+	std::cout << addr << std::endl;
+}
+
+template<typename T>
+void	iter(T const *addr, int size, void (*f)(T const &)){
 	
 	for(int i = 0; i < size; i++){
-		std::cout << "[" << addr[i] << "]" << std::endl;
+		(*f)(addr[i]);
 	}
 }
 

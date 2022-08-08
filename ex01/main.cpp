@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 18:16:02 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/08 00:59:53 by c2h6             ###   ########.fr       */
+/*   Updated: 2022/08/08 18:31:47 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 	{
-		int tab[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int intTab[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+		char charTab[12] = "0123456789\0";
 
-		::iter(&tab, 10);
+		::iter(intTab, 5, print);
+		::iter(charTab, 5, print);
 	}
 	else
 		std::cerr << "Error: invalid synthax. Try with ./execName" << std::endl;
