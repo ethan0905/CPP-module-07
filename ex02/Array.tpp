@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/08 19:36:28 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:41:15 by c2h6             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,69 @@
 #include <iostream>
 
 template<typename T>
-class	Template {
-	public:
-		Template<T>( void ) : _n(42) { return; }
-		Template<T>( T const & src ) { *this = src; return ; }
-		~Template<T>( void ) { return ; }
+class	Array {
 
-		int	getN( void )const { return (this->_n); }
+	public:
+		Array<T>( void ) { 
 		
-		Template	&operator=( Template<T> const & src ) { this->_n = src.getN(); return(*this); }
-		std::ostream	&operator<<(std::ostream &o, Template const &src) { o << src.getN(); return (o); }
+			this->_array = NULL;
+			this->_n = 0;
+			return;
+		}
+		Array<T>( unsigned int n ) : _n(n) {
+			
+			this->_array = new T[n];
+			for (unsigned int i = 0; i < n; i++)
+				this->_array[i] = 0; 
+			return ;
+		}
+		Array<T>( T const & src ) {
+			
+			*this = src;
+			return ;
+		}
+		~Array<T>( void ) {
+			
+			delete (this->_array);
+			return ;
+		}
+		
+		Array	&operator=( Array<T> const & src ) {
+			
+			if (this != src)
+			{
+				if (this->_array)
+					delete (this->_array);
+				this->_array = new T[src._n];
+				for (unsigned int i = 0; i < src._n; i++)
+					this->_array[i] = src._array[i];
+			}
+			return(*this);
+		}
+		
+		// specify which element is findable at tab[i] position
+		T	&operator[]( unsigned int i ) {
+			
+			if (i >= this->_n)
+				throw Array::InvalidIndexException();
+			return(*this);
+		}
+		
+		// std::ostream	&operator<<(std::ostream &o, Array const &src) {
+			
+		// 	(void)src;
+		// 	return (o);
+		// }
+		
+		class InvalidIndexException : public std::exception {
+			public:
+				virtual const char* what()const throw() {
+					return ("Error: invalid index");
+				}
+		};
 	private:
-		int	_n;
+		T	*_array;
+		unsigned int	_n;
 };
 
 #endif
