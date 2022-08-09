@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 18:16:02 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/09 13:52:14 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/09 14:16:15 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,18 @@ int main(int, char**)
     std::cout << numbers[3] << " | " << mirror[3] << std::endl;
     std::cout << numbers[4] << " | " << mirror[4] << std::endl;
 
-    // //SCOPE
-    // {
-    //     Array<int> tmp = numbers;
-    //     Array<int> test(tmp);
-    // }
+    //SCOPE
+    {   
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+ 
+        std::cout << tmp[0] << " | " << std::endl;
+        std::cout << tmp[1] << " | " << std::endl;
+        std::cout << tmp[2] << " | " << std::endl;
+        std::cout << tmp[3] << " | " << std::endl;
+        std::cout << tmp[4] << " | " << std::endl;
+    }
+
 
     // for (int i = 0; i < MAX_VAL; i++)
     // {
