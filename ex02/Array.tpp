@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/09 14:14:17 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/09 18:04:38 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ template<typename T>
 class	Array {
 
 	public:
-		Array<T>( void ) { 
+		Array( void ) { 
 
 			std::cout << GREEN "Default constructor called." END << std::endl;
 			this->_array = NULL;
 			this->_n = 0;
 			return;
 		}
-		Array<T>( unsigned int n ) : _n(n) {
+		Array( unsigned int n ) : _n(n) {
 
 			std::cout << GREEN "Parametric constructor called." END << std::endl;
 			this->_array = new T[n];
@@ -45,46 +45,48 @@ class	Array {
 				this->_array[i] = 0; 
 			return ;
 		}
-		Array<T>( T & src ) {
+		Array( Array & src ) {
 			
 			std::cout << GREEN "Copy constructor called." END << std::endl;
-			if (this != src)
+			if (this != &src)
 			{
-				if (this->_array)
-					delete (this->_array);
+				// if (this->_array)
+				// 	delete (this->_array);
 				this->_n = src._n;
-				this->_array = new T[size(src)];
+				this->_array = new T[size()];
 				for (unsigned int i = 0; i < src._n; i++)
 					this->_array[i] = src._array[i];
 			}
+
 			return ;
 		}
-		~Array<T>( void ) {
+		~Array( void ) {
 			
 			std::cout << RED "Destructor called." END << std::endl;
-			// delete (this->_array);
+			if (this->_array)
+				delete [] (_array);
 			return ;
 		}
 		
-		unsigned int size( T const & array ) {
+		unsigned int size( void ) {
 
 			std::cout << CYAN "Size function called." END << std::endl;
-			int i;
+			unsigned int i = this->_n;
 			
-			for (i = 0; array[i] != '\0'; i++)
-				;
+			// for (i = 0; array[i] != '\0'; i++)
+			// 	;
 			return (i);
 		}
 		
-		Array	&operator=( Array<T> const & src ) {
+		Array	&operator=( Array const & src ) {
 
 			std::cout << CYAN "Operator = called." END << std::endl;
-			if (this != src)
+			if (this != &src)
 			{
 				if (this->_array)
 					delete (this->_array);
 				this->_n = src._n;
-				this->_array = new T[size(src)];
+				this->_array = new T[size()];
 				for (unsigned int i = 0; i < src._n; i++)
 					this->_array[i] = src._array[i];
 			}
@@ -106,6 +108,7 @@ class	Array {
 					return ("Error: invalid index");
 				}
 		};
+
 	private:
 		T	*_array;
 		unsigned int	_n;

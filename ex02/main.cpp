@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 18:16:02 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/09 14:16:15 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/09 18:07:02 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
+    
     srand(time(NULL));
+    
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
@@ -52,54 +54,55 @@ int main(int, char**)
         // std::cout << numbers[i] << std::endl;
     }
 
-    std::cout << numbers[0] << " | " << mirror[0] << std::endl;
-    std::cout << numbers[1] << " | " << mirror[1] << std::endl;
-    std::cout << numbers[2] << " | " << mirror[2] << std::endl;
-    std::cout << numbers[3] << " | " << mirror[3] << std::endl;
-    std::cout << numbers[4] << " | " << mirror[4] << std::endl;
+    // std::cout << numbers[0] << " | " << mirror[0] << std::endl;
+    // std::cout << numbers[1] << " | " << mirror[1] << std::endl;
+    // std::cout << numbers[2] << " | " << mirror[2] << std::endl;
+    // std::cout << numbers[3] << " | " << mirror[3] << std::endl;
+    // std::cout << numbers[4] << " | " << mirror[4] << std::endl;
 
     //SCOPE
     {   
         Array<int> tmp = numbers;
         Array<int> test(tmp);
  
-        std::cout << tmp[0] << " | " << std::endl;
-        std::cout << tmp[1] << " | " << std::endl;
-        std::cout << tmp[2] << " | " << std::endl;
-        std::cout << tmp[3] << " | " << std::endl;
-        std::cout << tmp[4] << " | " << std::endl;
+        // std::cout << "tmp: " << tmp[0] << std::endl;
+        // std::cout << "tmp: " << tmp[1] << std::endl;
+        // std::cout << "tmp: " << tmp[2] << std::endl;
+        // std::cout << "tmp: " << tmp[3] << std::endl;
+        // std::cout << "tmp: " << tmp[4] << std::endl;
     }
 
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
 
-    // for (int i = 0; i < MAX_VAL; i++)
-    // {
-    //     if (mirror[i] != numbers[i])
-    //     {
-    //         std::cerr << "didn't save the same value!!" << std::endl;
-    //         return 1;
-    //     }
-    // }
-    // try
-    // {
-    //     numbers[-2] = 0;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
-    // try
-    // {
-    //     numbers[MAX_VAL] = 0;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-    // for (int i = 0; i < MAX_VAL; i++)
-    // {
-    //     numbers[i] = rand();
-    // }
-    delete [] mirror;//
-    return 0;
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    
+    delete [] (mirror);
+    return (0);
 }
