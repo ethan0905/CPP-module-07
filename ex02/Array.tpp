@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/09 18:04:38 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/09 18:24:06 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ class	Array {
 			
 			std::cout << RED "Destructor called." END << std::endl;
 			if (this->_array)
-				delete [] (_array);
+				delete [] (this->_array);
 			return ;
 		}
 		
