@@ -6,7 +6,7 @@
 /*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:49:12 by c2h6              #+#    #+#             */
-/*   Updated: 2022/08/09 12:36:27 by esafar           ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:25 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ class	Array {
 		// specify which element is findable at tab[i] position
 		T	&operator[]( unsigned int i ) {
 			
+			// std::cout << "tab[" << i << "] = " << this->_array[i] << std::endl;
 			if (i >= this->_n)
 				throw Array::InvalidIndexException();
 			return(this->_array[i]);
